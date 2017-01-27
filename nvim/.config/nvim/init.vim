@@ -1,11 +1,11 @@
 " Plugins with Plug
 call plug#begin('~/.config/nvim/plugged')
-Plug 'tpope/vim-vinegar'
+" Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-ragtag'
-Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-sleuth'
 " Plug 'vim-syntastic/syntastic'
 Plug 'jpalardy/vim-slime'
 " Plug 'cohama/lexima.vim'
@@ -22,11 +22,22 @@ Plug 'Raimondi/delimitMate'
 Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python'
 Plug 'tweekmonster/braceless.vim'
+Plug 'vim-scripts/matchit.zip'
+Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/echodoc.vim'
+Plug 'zchee/deoplete-jedi'
+Plug 'carlitux/deoplete-ternjs'
+Plug 'Shougo/neopairs.vim'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 call plug#end()
 
 " My settings
 
-let mapleader = '\<SPACE>'
+let mapleader = "\<Space>"
+nnoremap <Leader>w :w<CR>
+
+map <Leader>F :RangerNewTab<CR>
 
 set background=dark
 let g:solarized_termtrans = 1
@@ -46,9 +57,14 @@ set colorcolumn=81
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-set magic
+"set magic
 
 set inccommand=split
+
+set noshowmode
+
+set completeopt+=noinsert
+let g:deoplete#enable_at_startup = 1
 
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -94,9 +110,9 @@ let g:airline_theme='solarized'
 highlight SignColumn ctermbg=8
 
 " Sensible tab defaults
-set tabstop=4
-set shiftwidth=4
-set expandtab
+" set tabstop=4
+" set shiftwidth=4
+" set expandtab
 
 inoremap <M-o> <Esc>o
 inoremap <M-O> <Esc>O
@@ -140,6 +156,7 @@ let g:neomake_message_sign = {
         \ }
 let g:neomake_info_sign = {'text': 'I', 'texthl': 'NeomakeInfoSign'}
 let g:neomake_python_enabled_makers = ['pylint']
+let g:neomake_html_enabled_makers = ['htmlhint']
 highlight NeomakeErrorSign ctermfg = 1 ctermbg = 0
 highlight NeomakeWarningsign ctermfg = 3 ctermbg = 0
 highlight NeomakeMessageSign ctermfg = 2 ctermbg = 0
