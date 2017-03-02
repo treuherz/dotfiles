@@ -45,6 +45,12 @@ colorscheme solarized
 set scrolloff=1
 set sidescrolloff=5
 
+set autoindent
+set smartindent
+set smarttab
+
+set mouse=a
+
 set ignorecase
 set smartcase
 
@@ -63,7 +69,9 @@ set inccommand=split
 set noshowmode
 
 set completeopt+=noinsert
+set completeopt-=preview
 let g:deoplete#enable_at_startup = 1
+let g:echodoc_enable_at_startup = 1
 
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -109,14 +117,16 @@ let g:airline_theme='solarized'
 highlight SignColumn ctermbg=8
 
 " Sensible tab defaults
-" set tabstop=4
-" set shiftwidth=4
-" set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
 
 inoremap <M-o> <Esc>o
 inoremap <M-O> <Esc>O
 let g:ragtag_global_maps = 1
 
+let delimitMate_expand_cr = 2
 au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 let g:slime_target = "tmux"
@@ -144,14 +154,16 @@ let g:neomake_python_pylint_args = [
         \ '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg}"',
         \ '--reports=no'
         \ ]
-let g:neomake_error_sign = {'text': 'E', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_error_sign = {
+        \ 'text': 'E',
+        \ 'texthl': 'NeomakeErrorSign'}
 let g:neomake_warning_sign = {
-         \   'text': 'W',
-         \   'texthl': 'NeomakeWarningSign',
-         \ }
+        \ 'text': 'W',
+        \ 'texthl': 'NeomakeWarningSign',
+        \ }
 let g:neomake_message_sign = {
-        \   'text': 'M',
-        \   'texthl': 'NeomakeMessageSign',
+        \ 'text': 'M',
+        \ 'texthl': 'NeomakeMessageSign',
         \ }
 let g:neomake_info_sign = {'text': 'I', 'texthl': 'NeomakeInfoSign'}
 let g:neomake_python_enabled_makers = ['pylint']
