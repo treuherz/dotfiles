@@ -29,6 +29,7 @@ Plug 'carlitux/deoplete-ternjs'
 Plug 'Shougo/neopairs.vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
+Plug 'tpope/vim-eunuch'
 call plug#end()
 
 " My settings
@@ -133,7 +134,7 @@ let g:slime_target = "tmux"
 
 autocmd FileType python BracelessEnable +indent
 
-cmap w!! w !sudo tee > /dev/null %
+cmap w!! w :SudoWrite
 
 " set statusline+=%#warningmsg#
 " set statusline+=%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}
@@ -166,8 +167,10 @@ let g:neomake_message_sign = {
         \ 'texthl': 'NeomakeMessageSign',
         \ }
 let g:neomake_info_sign = {'text': 'I', 'texthl': 'NeomakeInfoSign'}
+let g:neomate_sql_enabled_makers = ['sqlint']
 let g:neomake_python_enabled_makers = ['pylint']
 let g:neomake_html_enabled_makers = ['htmlhint']
+let g:neomake_shell_enabled_makers = ['shellcheck']
 highlight NeomakeErrorSign ctermfg = 1 ctermbg = 0
 highlight NeomakeWarningsign ctermfg = 3 ctermbg = 0
 highlight NeomakeMessageSign ctermfg = 2 ctermbg = 0
