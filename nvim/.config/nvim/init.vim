@@ -134,7 +134,7 @@ let g:slime_target = "tmux"
 
 autocmd FileType python BracelessEnable +indent
 
-cmap w!! w :SudoWrite
+cmap w!! :SudoWrite<CR>
 
 " set statusline+=%#warningmsg#
 " set statusline+=%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}
