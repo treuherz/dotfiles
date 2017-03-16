@@ -30,6 +30,7 @@ Plug 'Shougo/neopairs.vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " My settings
