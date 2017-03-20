@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/eli'
-let g:netrw_dirhist_2='/home/eli/Spaceworks'
-let g:netrw_dirhist_3='/home/eli/Spaceworks/python-tools'
-let g:netrw_dirhist_4='/home/eli/Spaceworks/python-tools/spacetools'
-let g:netrw_dirhist_5='/etc/profile.d'
-let g:netrw_dirhist_6='/media/sf_Sandbox_Share/Machine Learning Course/machine-learning-ex1/machine-learning-ex1/ex1'
-let g:netrw_dirhist_7='/media/sf_Sandbox_Share/pytheas-docker/data/20170101'
