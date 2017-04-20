@@ -1,0 +1,47 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+
+export GOPATH="/home/eli/gocode"
+# added by Anaconda3 4.2.0 installer
+export PATH="/home/eli/anaconda3/bin:$(go env GOPATH)/bin:$PATH"
+
+
+export NVM_DIR="/home/eli/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Wraps mc so that it exits to the directory I'm looking at.
+alias mc='. /usr/share/mc/bin/mc-wrapper.sh'
+
+alias dk=docker
+alias dkm=docker-machine
+alias dkc=docker-compose
+
+alias bfg='java -jar /usr/lib/bfg-1.12.15.jar'
+
+export LESS='-i -M -R'
+export EDITOR='nvim'
+
+cdr() {
+  tmpfile="/tmp/ranger-dir"
+  ranger --choosedir=$tmpfile $argv
+  rangerdir=$(cat $tmpfile)
+  if [[ $PWD != $rangerdir ]]; then
+    cd $rangerdir
+    unset rangerdir
+  fi
+}
+
+alias rr=ranger
+
+eval $(thefuck --alias damn)
