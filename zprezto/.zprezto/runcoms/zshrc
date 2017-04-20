@@ -15,7 +15,7 @@ fi
 export GOPATH="/home/eli/gocode"
 export PATH="$(go env GOPATH)/bin:$PATH"
 # added by Anaconda3 4.2.0 installer
-export PATH="/home/eli/anaconda3/bin:$PATH"
+export PATH="$HOME/anaconda3/bin:$PATH"
 
 
 export NVM_DIR="/home/eli/.nvm"
