@@ -31,6 +31,7 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
+Plug 'edkolev/tmuxline.vim'
 call plug#end()
 
 " My settings
