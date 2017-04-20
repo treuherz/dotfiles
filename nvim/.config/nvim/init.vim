@@ -132,7 +132,9 @@ let g:ragtag_global_maps = 1
 let delimitMate_expand_cr = 2
 au FileType python let b:delimitMate_nesting_quotes = ['"']
 
-let g:slime_target = "tmux"
+let g:airline#extensions#tabline#enabled = 1
+
+au BufNewFile,BufRead,BufReadPost *.rkt,*.rktl,*.rktd set filetype=sheme
 
 autocmd FileType python BracelessEnable +indent
 
