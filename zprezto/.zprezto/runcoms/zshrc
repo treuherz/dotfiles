@@ -12,8 +12,10 @@ fi
 
 # Customize to your needs...
 
-export GOPATH="/home/eli/gocode"
-export PATH="$(go env GOPATH)/bin:$PATH"
+if type go > /dev/null; then
+  export GOPATH="/home/eli/gocode"
+  export PATH="$(go env GOPATH)/bin:$PATH"
+fi
 # added by Anaconda3 4.2.0 installer
 export PATH="$HOME/anaconda3/bin:$PATH"
 
@@ -45,4 +47,6 @@ cdr() {
 
 alias rr=ranger
 
-eval $(thefuck --alias damn)
+if type thefuck > /dev/null; then
+  eval $(thefuck --alias damn)
+fi
