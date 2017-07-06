@@ -13,7 +13,7 @@ fi
 # Customize to your needs...
 
 if type go > /dev/null; then
-  export GOPATH="/home/eli/gocode"
+  export GOPATH="$HOME/go"
   export PATH="$(go env GOPATH)/bin:$PATH"
 fi
 # added by Anaconda3 4.2.0 installer
@@ -27,6 +27,8 @@ export NVM_DIR="/home/eli/.nvm"
 alias mc='. /usr/share/mc/bin/mc-wrapper.sh'
 
 alias dk=docker
+alias dkr="docker run"
+alias dkb="docker build"
 alias dkm=docker-machine
 alias dkc=docker-compose
 
@@ -50,3 +52,4 @@ alias rr=ranger
 if type thefuck > /dev/null; then
   eval $(thefuck --alias damn)
 fi
+source <(kubectl completion zsh)
