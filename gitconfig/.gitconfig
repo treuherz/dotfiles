@@ -1,0 +1,13 @@
+[user]
+	email = eli.treuherz@cgi.com
+	name = Eli Treuherz
+[push]
+	default = simple
+[core]
+	editor = nvim
+[mergetool "fugitive"]
+	cmd = nvim -c \"Gvdiff\" \"$MERGED\"
+[merge]
+	tool = fugitive
+[diff]
+	algorithm = histogram
