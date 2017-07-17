@@ -1,0 +1,6 @@
+\pset null 'Ø' -- Make nulls visible
+\pset linestyle unicode -- Make boxes nicer
+\timing -- Always print timings
+\x auto -- Automatically format records according to column width
+\set ON_ERROR_ROLLBACK interactive -- If I mess up a complicated command in psql, roll the whole thing back
+\set COMP_KEYWORD_CASE upper -- Always complete keywords in uppercase
