@@ -11,3 +11,11 @@
 	tool = fugitive
 [diff]
 	algorithm = histogram
+[alias]
+	st = status
+	purr = pull
+	unstage = reset HEAD --
+	rev = "!f() { git push origin HEAD:refs/for/${1:-$(git branch | grep \\* | cut -d ' ' -f2)}; }; f"
+[gitreview]
+	remote = origin
+	username = treuherze
