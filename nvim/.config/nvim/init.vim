@@ -1,6 +1,6 @@
 " Plugins with Plug
 call plug#begin('~/.config/nvim/plugged')
-" Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
