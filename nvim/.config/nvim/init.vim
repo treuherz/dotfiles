@@ -138,7 +138,9 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 let g:airline#extensions#tabline#enabled = 1
 
-au BufNewFile,BufRead,BufReadPost *.rkt,*.rktl,*.rktd set filetype=sheme
+au BufNewFile,BufRead,BufReadPost *.rkt,*.rktl,*.rktd set filetype=scheme
+
+au BufNewFile,BufRead,BufReadPost *BUILD set filetype=bzl
 
 autocmd FileType python BracelessEnable +indent
 
