@@ -56,3 +56,4 @@ fi
 if type kubectl > /dev/null; then
   source <(kubectl completion zsh)
 fi
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
