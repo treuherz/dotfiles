@@ -12,6 +12,7 @@
 [diff]
 	algorithm = histogram
 [alias]
+	ss = status -sb
 	st = status
 	purr = pull
 	unstage = reset HEAD --
