@@ -14,7 +14,9 @@
 [alias]
 	ss = status -sb
 	st = status
-	purr = pull
+	ll = --no-pager log --all --oneline --decorate --graph -n 15
+	lll = log --all --oneline --decorate --graph
+	purr = pull --rebase
 	unstage = reset HEAD --
 [gitreview]
 	remote = origin
