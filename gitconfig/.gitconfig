@@ -18,6 +18,7 @@
 	lll = log --all --oneline --decorate --graph
 	purr = pull --rebase
 	unstage = reset HEAD --
+	root = rev-parse --show-toplevel
 [gitreview]
 	remote = origin
 	username = treuherze
