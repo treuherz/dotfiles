@@ -14,7 +14,7 @@
 [alias]
 	ss = status -sb
 	st = status
-	ll = --no-pager log --all --oneline --decorate --graph -n 15
+	ll = !git --no-pager log --oneline --decorate --graph -n 10
 	lll = log --all --oneline --decorate --graph
 	purr = pull --rebase
 	unstage = reset HEAD --
