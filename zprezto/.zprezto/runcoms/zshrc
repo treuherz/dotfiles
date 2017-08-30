@@ -34,7 +34,7 @@ alias dkc=docker-compose
 
 alias bfg='java -jar /usr/lib/bfg-1.12.15.jar'
 
-alias cg="cd $(git rev-parse --show-toplevel)"
+alias cg='cd $(git rev-parse --show-toplevel)'
 
 export LESS='-i -M -R'
 export EDITOR='nvim'
