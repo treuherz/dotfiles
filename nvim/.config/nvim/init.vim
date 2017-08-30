@@ -40,6 +40,9 @@ call plug#end()
 
 " My settings
 
+set undofile
+set undodir="~/.nvundo/"
+
 let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
 
