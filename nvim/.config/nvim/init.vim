@@ -71,6 +71,7 @@ set ruler
 set colorcolumn=81
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+:au VimLeave * set guicursor=a:ver100-blinkon0
 
 "set magic
 
@@ -106,10 +107,10 @@ augroup END
 set relativenumber
 set number
 
-" Change cursor shape accoding to mode
-let &t_SI = "\<Esc>[6 q"
-let &t_SR = "\<Esc>[4 q"
-let &t_EI = "\<Esc>[2 q"
+" " Change cursor shape accoding to mode
+" let &t_SI = "\<Esc>[6 q"
+" let &t_SR = "\<Esc>[4 q"
+" let &t_EI = "\<Esc>[2 q"
 
 " powerline symbols
 if !exists('g:airline_symbols')
