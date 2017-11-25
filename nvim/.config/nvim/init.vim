@@ -61,6 +61,8 @@ set smarttab
 
 set mouse=a
 
+au FileType html,eruby,rb,css,js,xml runtime! macros/matchit.vim
+
 set ignorecase
 set smartcase
 
