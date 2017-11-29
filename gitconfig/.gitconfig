@@ -5,20 +5,27 @@
 	default = simple
 [core]
 	editor = nvim
+	excludesfile = /home/eli/.gitignore_global
 [mergetool "fugitive"]
 	cmd = nvim -c \"Gvdiff\" \"$MERGED\"
 [merge]
 	tool = fugitive
+[difftool "nvimdiff"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
 [diff]
+	tool = nvimdiff
 	algorithm = histogram
 [alias]
 	ss = status -sb
 	st = status
 	ll = !git --no-pager log --oneline --decorate --graph -n 10
+	la = !git ll --all
 	lll = log --all --oneline --decorate --graph
 	purr = pull --rebase
 	unstage = reset HEAD --
 	root = rev-parse --show-toplevel
+	amend = commit --amend --no-edit
 [gitreview]
 	remote = origin
 	username = treuherze
+[alais]

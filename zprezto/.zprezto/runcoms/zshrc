@@ -16,15 +16,18 @@ if type go > /dev/null; then
   export GOPATH="$HOME/go"
   export PATH="$(go env GOPATH)/bin:$PATH"
 fi
-# added by Anaconda3 4.2.0 installer
-export PATH="$HOME/anaconda3/bin:$PATH"
 # Cargo packages
 if type cargo > /dev/null; then
   export PATH="$HOME/.cargo/bin:$PATH"
 fi
+# Yarn packages
+if type yarn > /dev/null; then
+  export PATH="$HOME/.yarn/bin:$PATH"
+fi
 
-export NVM_DIR="/home/eli/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export PATH="$HOME/.local/bin:$PATH"
+export MANPATH="$HOME/.local/share/man:$MANPATH"
+
 
 # Wraps mc so that it exits to the directory I'm looking at.
 alias mc='. /usr/share/mc/bin/mc-wrapper.sh'
@@ -37,7 +40,7 @@ alias dkc=docker-compose
 
 alias bfg='java -jar /usr/lib/bfg-1.12.15.jar'
 
-alias cg='cd (git rev-parse --show-toplevel)'
+alias cg='cd $(git rev-parse --show-toplevel)'
 
 export LESS='-i -M -R'
 export EDITOR='nvim'
@@ -60,6 +63,10 @@ fi
 
 if type kubectl > /dev/null; then
   source <(kubectl completion zsh)
+fi
+
+if [[ -e /usr/local/share/z/z.sh ]]; then
+  source /usr/local/share/z/z.sh
 fi
 
 export DEFAULT_USER=`id -un`

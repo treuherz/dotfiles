@@ -36,12 +36,13 @@ Plug 'bazelbuild/vim-bazel'
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 " My settings
 
 set undofile
-set undodir="~/.nvundo/"
+set undodir=~/.nvundo/
 
 let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
@@ -75,6 +76,9 @@ set colorcolumn=81
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 :au VimLeave * set guicursor=a:ver100-blinkon0
 
+set tags=./tags;
+let g:gutentags_ctags_exclude = ['bazel-*']
+
 "set magic
 
 set inccommand=split
@@ -94,6 +98,8 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+autocmd FileType gitcommit,latex,tex,md,markdown setlocal spell
 
 let g:incsearch#consistent_n_direction = 1
 
