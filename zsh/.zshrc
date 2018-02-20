@@ -1,16 +1,21 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+# ZPLUG BEGIN
+source ~/.zplug/init.zsh
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+zplug "~/.config/zsh/history", from:local
+zplug "zsh-users/zsh-completions"
+zplug "srijanshetty/zsh-pip-completion"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "agnoster/3712874", from:gist, as:theme
+zplug "~/.config/zsh/keybindings", from:local
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
 fi
-
-# Customize to your needs...
+zplug load
 
 if type go > /dev/null; then
   export GOPATH="$HOME/go"
@@ -70,14 +75,6 @@ fi
 
 if [[ -e /usr/local/share/z/z.sh ]]; then
   source /usr/local/share/z/z.sh
-fi
-
-COMPLETION_DIR="$HOME/.config/completions" 
-if [[ -d $COMPLETION_DIR ]] \
-  && [[ "$(ls -A $COMPLETION_DIR)" ]]; then
-    fpath=($COMPLETION_DIR $fpath)
-    rm -f ~/.zcompdump
-    compinit
 fi
 
 export DEFAULT_USER=`id -un`
