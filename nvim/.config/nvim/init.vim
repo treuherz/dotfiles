@@ -23,7 +23,7 @@ Plug 'bps/vim-textobj-python'
 Plug 'tweekmonster/braceless.vim'
 Plug 'vim-scripts/matchit.zip'
 Plug 'Shougo/deoplete.nvim'
-" Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/echodoc.vim'
 Plug 'zchee/deoplete-jedi'
 Plug 'carlitux/deoplete-ternjs'
 " Plug 'Shougo/neopairs.vim'
@@ -37,6 +37,8 @@ Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 " My settings
@@ -101,6 +103,18 @@ map g# <Plug>(incsearch-nohl-g#)
 
 autocmd FileType gitcommit,latex,tex,md,markdown setlocal spell
 
+set foldmethod=syntax
+set foldcolumn=1
+let g:sh_fold_enabled=5
+" set nofoldenable
+" Save/load fold setup when files closed
+autocmd BufWinLeave ?* mkview!
+autocmd BufWinEnter ?* try|loadview|catch|silent! foldopen!|endtry
+" ...But don't save your pwd in the view
+set viewoptions-=options
+highlight FoldColumn ctermfg=10
+highlight Folded ctermfg=10 cterm=NONE
+
 let g:incsearch#consistent_n_direction = 1
 
 " Turns on cursorline only for the current window.
@@ -114,6 +128,8 @@ augroup END
 " line, where it shows the absolute.
 set relativenumber
 set number
+
+au FileType help nmap <buffer> <Esc> :helpclose<CR>
 
 " " Change cursor shape accoding to mode
 " let &t_SI = "\<Esc>[6 q"
@@ -187,7 +203,8 @@ augroup END
 let g:neomake_python_pylint_args = [
         \ '--output-format=text',
         \ '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg}"',
-        \ '--reports=no'
+        \ '--reports=no',
+        \ '-E'
         \ ]
 let g:neomake_error_sign = {
         \ 'text': 'E',
