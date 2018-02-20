@@ -17,8 +17,10 @@ if type go > /dev/null; then
   export PATH="$(go env GOPATH)/bin:$PATH"
 fi
 # Cargo packages
-if type cargo > /dev/null; then
-  export PATH="$HOME/.cargo/bin:$PATH"
+CARGO_BIN="$HOME/.cargo/bin/"
+if [[ -d $CARGO_BIN ]] \
+  && [[ "$(ls -A $CARGO_BIN)" ]]; then
+  export PATH="$CARGO_BIN:$PATH"
 fi
 # Yarn packages
 if type yarn > /dev/null; then
@@ -28,6 +30,7 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 export MANPATH="$HOME/.local/share/man:$MANPATH"
 
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Wraps mc so that it exits to the directory I'm looking at.
 alias mc='. /usr/share/mc/bin/mc-wrapper.sh'
@@ -67,6 +70,14 @@ fi
 
 if [[ -e /usr/local/share/z/z.sh ]]; then
   source /usr/local/share/z/z.sh
+fi
+
+COMPLETION_DIR="$HOME/.config/completions" 
+if [[ -d $COMPLETION_DIR ]] \
+  && [[ "$(ls -A $COMPLETION_DIR)" ]]; then
+    fpath=($COMPLETION_DIR $fpath)
+    rm -f ~/.zcompdump
+    compinit
 fi
 
 export DEFAULT_USER=`id -un`
