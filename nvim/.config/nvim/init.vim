@@ -14,7 +14,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jeetsukumaran/vim-indentwise'
 " Plug 'bfredl/nvim-ipy'
-Plug 'neomake/neomake'
 Plug 'haya14busa/incsearch.vim'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'Raimondi/delimitMate'
@@ -39,6 +38,7 @@ Plug 'google/vim-glaive'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'w0rp/ale'
 call plug#end()
 
 " My settings
@@ -200,30 +200,15 @@ augroup autoformat_settings
   " " Alternative: autocmd FileType python AutoFormatBuffer autopep8
 augroup END
 
-let g:neomake_python_pylint_args = [
-        \ '--output-format=text',
-        \ '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg}"',
-        \ '--reports=no',
-        \ '-E'
-        \ ]
-let g:neomake_error_sign = {
-        \ 'text': 'E',
-        \ 'texthl': 'NeomakeErrorSign'}
-let g:neomake_warning_sign = {
-        \ 'text': 'W',
-        \ 'texthl': 'NeomakeWarningSign',
-        \ }
-let g:neomake_message_sign = {
-        \ 'text': 'M',
-        \ 'texthl': 'NeomakeMessageSign',
-        \ }
-let g:neomake_info_sign = {'text': 'I', 'texthl': 'NeomakeInfoSign'}
-let g:neomate_sql_enabled_makers = ['sqlint']
-let g:neomake_python_enabled_makers = ['pylint']
-let g:neomake_html_enabled_makers = ['htmlhint']
-let g:neomake_shell_enabled_makers = ['shellcheck']
-highlight NeomakeErrorSign ctermfg = 1 ctermbg = 0
-highlight NeomakeWarningsign ctermfg = 3 ctermbg = 0
-highlight NeomakeMessageSign ctermfg = 2 ctermbg = 0
-highlight NeomakeInfoSign ctermfg = 4 ctermbg = 0
-autocmd! BufWritePost * Neomake
+let g:ale_linters = {
+      \ 'python': ['pylint'],
+      \}
+
+let g:ale_sign_error = 'E'
+let g:ale_sign_warning = 'W'
+let g:ale_sign_info = 'I'
+highlight ALEErrorSign ctermfg = 1 ctermbg = 0
+highlight ALEWarningsign ctermfg = 3 ctermbg = 0
+
+highlight ALEErrorSign ctermfg = 1 ctermbg = 0
+highlight ALEWarningsign ctermfg = 3 ctermbg = 0
