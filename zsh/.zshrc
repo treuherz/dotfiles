@@ -1,13 +1,19 @@
-# ZPLUG BEGIN
+bindkey -e
+
+#########
+# ZPLUG #
+#########
+
 source ~/.zplug/init.zsh
 
 zplug "~/.config/zsh/history", from:local
+zplug "~/.config/zsh/keybindings", from:local
+zplug "~/.config/zsh/completion", from:local
 zplug "zsh-users/zsh-completions"
 zplug "srijanshetty/zsh-pip-completion"
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "agnoster/3712874", from:gist, as:theme
-zplug "~/.config/zsh/keybindings", from:local
+zplug "zsh-users/zsh-history-substring-search", on:"zsh-users/zsh-syntax-highlighting"
+zplug "agnoster/agnoster-zsh-theme", as:theme
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -17,17 +23,31 @@ if ! zplug check --verbose; then
 fi
 zplug load
 
+
+###########
+# OPTIONS #
+###########
+setopt autocd # if a directory is sent instead of a command, cd to it
+setopt menucomplete # ambiguous completion immediately fills in the first option
+
+#########
+# $PATH #
+#########
+
+# Go
 if type go > /dev/null; then
   export GOPATH="$HOME/go"
   export PATH="$(go env GOPATH)/bin:$PATH"
 fi
-# Cargo packages
+
+# Rust
 CARGO_BIN="$HOME/.cargo/bin/"
 if [[ -d $CARGO_BIN ]] \
   && [[ "$(ls -A $CARGO_BIN)" ]]; then
   export PATH="$CARGO_BIN:$PATH"
 fi
-# Yarn packages
+
+# Yarn
 if type yarn > /dev/null; then
   export PATH="$HOME/.yarn/bin:$PATH"
 fi
@@ -36,6 +56,10 @@ export PATH="$HOME/.local/bin:$PATH"
 export MANPATH="$HOME/.local/share/man:$MANPATH"
 
 export XDG_CONFIG_HOME="$HOME/.config"
+
+###########
+# ALIASES #
+###########
 
 # Wraps mc so that it exits to the directory I'm looking at.
 alias mc='. /usr/share/mc/bin/mc-wrapper.sh'
@@ -67,10 +91,6 @@ alias rr=ranger
 
 if type thefuck > /dev/null; then
   eval $(thefuck --alias damn)
-fi
-
-if type kubectl > /dev/null; then
-  source <(kubectl completion zsh)
 fi
 
 if [[ -e /usr/local/share/z/z.sh ]]; then
