@@ -32,7 +32,6 @@ zplug load
 # OPTIONS #
 ###########
 setopt autocd # if a directory is sent instead of a command, cd to it
-setopt menucomplete # ambiguous completion immediately fills in the first option
 
 #########
 # $PATH #
