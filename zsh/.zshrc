@@ -4,9 +4,13 @@ bindkey -e
 # ZPLUG #
 #########
 
-source ~/.zplug/init.zsh
+source $ZPLUG_HOME/init.zsh
 
 zplug "~/.config/zsh/history", from:local
+zplug "~/.config/zsh/keybindings-osx", from:local, \
+    if:"[[ $OSTYPE == *darwin* ]]"
+zplug "~/.config/zsh/keybindings", from:local, \
+    if:"[[ $OSTYPE != *darwin* ]]"
 zplug "~/.config/zsh/keybindings", from:local
 zplug "~/.config/zsh/completion", from:local
 zplug "zsh-users/zsh-completions"
@@ -15,7 +19,7 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search", on:"zsh-users/zsh-syntax-highlighting"
 zplug "agnoster/agnoster-zsh-theme", as:theme
 
-if ! zplug check --verbose; then
+if ! zplug check; then
     printf "Install? [y/N]: "
     if read -q; then
         echo; zplug install
