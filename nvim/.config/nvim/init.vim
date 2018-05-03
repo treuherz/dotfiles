@@ -21,10 +21,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python'
 Plug 'tweekmonster/braceless.vim'
 Plug 'vim-scripts/matchit.zip'
-Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/echodoc.vim'
-Plug 'zchee/deoplete-jedi'
-Plug 'carlitux/deoplete-ternjs'
 " Plug 'Shougo/neopairs.vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
@@ -39,6 +35,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'w0rp/ale'
+Plug 'roxma/nvim-completion-manager'
 call plug#end()
 
 " My settings
@@ -83,14 +80,13 @@ let g:gutentags_ctags_exclude = ['bazel-*']
 
 "set magic
 
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:cm_complete_start_delay = 50
+
 set inccommand=split
 
 set noshowmode
-
-set completeopt+=noinsert
-set completeopt-=preview
-let g:deoplete#enable_at_startup = 1
-let g:echodoc_enable_at_startup = 1
 
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
