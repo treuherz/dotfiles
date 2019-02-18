@@ -4,13 +4,15 @@ bindkey -e
 # ZPLUG #
 #########
 
+export ZPLUG_HOME=~/.zplug
+
 source $ZPLUG_HOME/init.zsh
 
 zplug "~/.config/zsh/history", from:local
 zplug "~/.config/zsh/keybindings-osx", from:local, \
     if:"[[ $OSTYPE == *darwin* ]]"
-zplug "~/.config/zsh/keybindings", from:local, \
-    if:"[[ $OSTYPE != *darwin* ]]"
+zplug "~/.config/zsh/keybindings-linux", from:local, \
+    if:"[[ $OSTYPE == *linux* ]]"
 zplug "~/.config/zsh/keybindings", from:local
 zplug "~/.config/zsh/completion", from:local
 zplug "zsh-users/zsh-completions"
@@ -28,37 +30,12 @@ fi
 zplug load
 
 
+source $HOME/.zlocal
 ###########
 # OPTIONS #
 ###########
 setopt autocd # if a directory is sent instead of a command, cd to it
 
-#########
-# $PATH #
-#########
-
-# Go
-if type go > /dev/null; then
-  export GOPATH="$HOME/go"
-  export PATH="$(go env GOPATH)/bin:$PATH"
-fi
-
-# Rust
-CARGO_BIN="$HOME/.cargo/bin/"
-if [[ -d $CARGO_BIN ]] \
-  && [[ "$(ls -A $CARGO_BIN)" ]]; then
-  export PATH="$CARGO_BIN:$PATH"
-fi
-
-# Yarn
-if type yarn > /dev/null; then
-  export PATH="$HOME/.yarn/bin:$PATH"
-fi
-
-export PATH="$HOME/.local/bin:$PATH"
-export MANPATH="$HOME/.local/share/man:$MANPATH"
-
-export XDG_CONFIG_HOME="$HOME/.config"
 
 ###########
 # ALIASES #
@@ -73,12 +50,13 @@ alias dkb="docker build"
 alias dkm=docker-machine
 alias dkc=docker-compose
 
+
+alias kc=kubectl
+
 alias bfg='java -jar /usr/lib/bfg-1.12.15.jar'
 
 alias cg='cd $(git rev-parse --show-toplevel)'
 
-export LESS='-i -M -R'
-export EDITOR='nvim'
 
 cdr() {
   tmpfile="/tmp/ranger-dir"
@@ -100,4 +78,9 @@ if [[ -e /usr/local/share/z/z.sh ]]; then
   source /usr/local/share/z/z.sh
 fi
 
-export DEFAULT_USER=`id -un`
+# Load pyenv automatically by appending
+# the following to ~/.zshrc:
+
+eval "$(pyenv init -)"
+
+export WORDCHARS=${WORDCHARS/\/}

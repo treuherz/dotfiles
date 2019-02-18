@@ -35,7 +35,11 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'w0rp/ale'
-Plug 'roxma/nvim-completion-manager'
+Plug 'ncm2/ncm2'
+Plug 'cespare/vim-toml'
+Plug 'rust-lang/rust.vim'
+Plug 'google/vim-jsonnet'
+Plug 'rodjek/vim-puppet'
 call plug#end()
 
 " My settings
@@ -75,7 +79,7 @@ set colorcolumn=81
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 :au VimLeave * set guicursor=a:ver100-blinkon0
 
-set tags=./tags;
+set tags=./.tags;
 let g:gutentags_ctags_exclude = ['bazel-*']
 
 "set magic
@@ -164,7 +168,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 au BufNewFile,BufRead,BufReadPost *.rkt,*.rktl,*.rktd set filetype=scheme
 
-au BufNewFile,BufRead,BufReadPost *BUILD set filetype=bzl
+au BufNewFile,BufRead,BufReadPost *.BUILD,BUILD set filetype=bzl
 
 autocmd FileType python BracelessEnable +indent
 
@@ -198,6 +202,7 @@ augroup END
 
 let g:ale_linters = {
       \ 'python': ['pylint'],
+      \ 'rust': ['rls'],
       \}
 
 let g:ale_sign_error = 'E'
@@ -208,3 +213,18 @@ highlight ALEWarningsign ctermfg = 3 ctermbg = 0
 
 highlight ALEErrorSign ctermfg = 1 ctermbg = 0
 highlight ALEWarningsign ctermfg = 3 ctermbg = 0
+
+function! Leftpad(string, width, ...)
+  " If specifying a pad string longer than 1 char, you risk the eventual
+  " padding being too short.
+  let string = a:string
+  let pad = get(a:000, 0, ' ')
+  let pad_length = a:width - strdisplaywidth(string)
+  if pad_length > 0
+    let width_per_pad = strdisplaywidth(pad)
+    let pads_needed = pad_length / width_per_pad  " truncated
+    let string = repeat(pad, pads_needed) . string
+  endif
+  return string
+endfunction
+

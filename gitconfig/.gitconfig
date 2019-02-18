@@ -6,6 +6,8 @@
 [core]
 	editor = nvim
 	excludesfile = /home/eli/.gitignore_global
+	autocrlf = input
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [mergetool "fugitive"]
 	cmd = nvim -c \"Gvdiff\" \"$MERGED\"
 [merge]
@@ -20,8 +22,9 @@
 	st = status
 	ll = !git --no-pager log --oneline --decorate --graph -n 10
 	la = !git ll --all
-	lll = log --all --oneline --decorate --graph
+	lll = log --all --oneline --decorate --graph --date-order
 	purr = pull --rebase
+	puff = pull --ff-only
 	unstage = reset HEAD --
 	root = rev-parse --show-toplevel
 	amend = commit --amend --no-edit
@@ -29,3 +32,7 @@
 	remote = origin
 	username = treuherze
 [alais]
+[rebase]
+	autosquash = true
+[diff-so-fancy]
+	stripLeadingSymbols = false
