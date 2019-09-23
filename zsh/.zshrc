@@ -4,7 +4,7 @@ bindkey -e
 # ZPLUG #
 #########
 
-export ZPLUG_HOME=~/.zplug
+export ZPLUG_HOME=/usr/local/opt/zplug
 
 source $ZPLUG_HOME/init.zsh
 
@@ -53,10 +53,7 @@ alias dkc=docker-compose
 
 alias kc=kubectl
 
-alias bfg='java -jar /usr/lib/bfg-1.12.15.jar'
-
 alias cg='cd $(git rev-parse --show-toplevel)'
-
 
 cdr() {
   tmpfile="/tmp/ranger-dir"
@@ -78,9 +75,23 @@ if [[ -e /usr/local/share/z/z.sh ]]; then
   source /usr/local/share/z/z.sh
 fi
 
+if [[ -e $HOME/.cargo/env ]]; then
+  source $HOME/.cargo/env
+fi
+
 # Load pyenv automatically by appending
 # the following to ~/.zshrc:
 
-eval "$(pyenv init -)"
+if (( $+commands[pyenv] )); then
+  eval "$(pyenv init -)"
+fi
+
+if (( $+commands[go] )); then
+  export PATH=$(go env GOPATH)/bin:$PATH
+fi
 
 export WORDCHARS=${WORDCHARS/\/}
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/nomad nomad
+
