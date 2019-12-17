@@ -1,0 +1,14 @@
+set surround
+set commentary
+set ideajoin
+set ideamarks
+set incsearch
+set relativenumber
+set hlsearch
+set showmode
+set undolevels 10000
+set smartcase
+set multiple-cursors
+map gQ :action ReformatCode<CR>
+map gqq :action com.andrewbrookins.idea.wrap.WrapAction<CR>
+map gqap :action com.andrewbrookins.idea.wrap.WrapParagraphAction<CR>
