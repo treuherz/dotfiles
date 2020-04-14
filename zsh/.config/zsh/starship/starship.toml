@@ -1,0 +1,25 @@
+prompt_order = [
+    "username",
+    "hostname",
+    "directory",
+    "git_branch",
+    "git_state",
+    "git_status",
+    "package",
+    "cmd_duration",
+    "time",
+    "line_break",
+    "jobs",
+    "battery",
+    "character",
+]
+
+[battery]
+disabled = true
+
+[character]
+use_symbol_for_status = true
+
+[directory]
+truncate_to_repo = true
+fish_style_pwd_dir_length = 1
