@@ -31,8 +31,7 @@ Plug 'bazelbuild/vim-bazel'
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'SirVer/ultisnips'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'honza/vim-snippets'
 Plug 'w0rp/ale'
 Plug 'ncm2/ncm2'
@@ -40,9 +39,12 @@ Plug 'cespare/vim-toml'
 Plug 'rust-lang/rust.vim'
 Plug 'google/vim-jsonnet'
 Plug 'rodjek/vim-puppet'
+Plug 'hashivim/vim-hashicorp-tools'
 call plug#end()
 
 " My settings
+
+let g:python3_host_prog = '/usr/local/bin/python'
 
 set undofile
 set undodir=~/.nvundo/
@@ -103,10 +105,10 @@ map g# <Plug>(incsearch-nohl-g#)
 
 autocmd FileType gitcommit,latex,tex,md,markdown setlocal spell
 
+autocmd FileType gitcommit setlocal nofoldenable
 set foldmethod=syntax
 set foldcolumn=1
 let g:sh_fold_enabled=5
-" set nofoldenable
 " Save/load fold setup when files closed
 autocmd BufWinLeave ?* mkview!
 autocmd BufWinEnter ?* try|loadview|catch|silent! foldopen!|endtry
