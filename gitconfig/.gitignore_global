@@ -1,2 +1,5 @@
-/tags
-/.pre-commit-config.yaml
+tags
+/.vscode
+.idea/
+*.iml
+.DS_store

@@ -18,21 +18,29 @@
 	tool = nvimdiff
 	algorithm = histogram
 [alias]
+	amend = commit --amend --no-edit
 	ss = status -sb
 	st = status
 	ll = !git --no-pager log --oneline --decorate --graph -n 10
 	la = !git ll --all
-	lll = log --all --oneline --decorate --graph --date-order
+	lll = log --all --oneline --decorate --graph 
+	mr = !sh -c 'git fetch origin merge-requests/$1/head:mr/$1 && git checkout mr/$1' -
+	nuke = reset --hard
 	purr = pull --rebase
 	puff = pull --ff-only
 	unstage = reset HEAD --
+	staged = diff --cached
 	root = rev-parse --show-toplevel
-	amend = commit --amend --no-edit
 [gitreview]
 	remote = origin
 	username = treuherze
-[alais]
 [rebase]
 	autosquash = true
 [diff-so-fancy]
 	stripLeadingSymbols = false
+[url "ssh://git@bitbucket.org/"]
+	insteadOf = https://bitbucket.org/
+[url "ssh://git@gitlab.com/"]
+	insteadOf = https://gitlab.com/
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
