@@ -111,3 +111,4 @@ complete -o nospace -C /usr/local/bin/nomad nomad
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source $HOME/.zlocal
+
