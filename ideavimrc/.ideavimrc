@@ -1,5 +1,7 @@
 set surround
 set commentary
+set vim-paragraph-motion
+set ideamarks
 set ideajoin
 set ideamarks
 set incsearch
@@ -8,6 +10,7 @@ set relativenumber
 set hlsearch
 set showmode
 set undolevels 10000
+set ignorecase " need this to be set for smartcase to work
 set smartcase
 set multiple-cursors
 map gQ :action ReformatCode<CR>

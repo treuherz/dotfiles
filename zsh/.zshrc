@@ -41,7 +41,7 @@ zplug load
 # PATH #
 ########
 
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/sbin:$PATH
 
 ###########
 # OPTIONS #
@@ -112,3 +112,11 @@ complete -o nospace -C /usr/local/bin/nomad nomad
 
 source $HOME/.zlocal
 
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+
+complete -o nospace -C /usr/local/bin/terraform terraform
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
