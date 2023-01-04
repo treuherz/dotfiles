@@ -12,8 +12,18 @@ set showmode
 set undolevels 10000
 set ignorecase " need this to be set for smartcase to work
 set smartcase
+set visualbell
 set multiple-cursors
-map gQ :action ReformatCode<CR>
+
+set highlightedyank
+let g:highlightedyank_highlight_duration = "750"
+let g:highlightedyank_highlight_color = "rgba(255, 234, 152, 155)"
+
+let mapleader = " "
+:nnoremap <Leader>= :action ReformatCode<CR>
 map gqq :action com.andrewbrookins.idea.wrap.WrapAction<CR>
 map gqap :action com.andrewbrookins.idea.wrap.WrapParagraphAction<CR>
 nnoremap <C-o> :action Back<CR>
+
+command! cn action GotoNextError
+command! cp action GotoPreviousError
