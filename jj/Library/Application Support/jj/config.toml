@@ -1,0 +1,51 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Eli Treuherz"
+email = "et@arenko.group"
+
+[ui]
+default-command = "ll"
+diff-editor = ":builtin"
+pager = ":builtin"
+
+[ui.streampager]
+interface = "quit-quickly-or-clear-output"
+
+[merge-tools.difft]
+diff-args = ["--color=always", "$left", "$right"]
+
+[merge-tools.mergiraf]
+program = "mergiraf"
+merge-args = ["merge", "$base", "$left", "$right", "-o", "$output", "--fast"]
+merge-conflict-exit-codes = [1]
+conflict-marker-style = "git"
+
+[git]
+auto-local-bookmark = true
+push-boomark-prefix = "et/push-"
+
+[aliases]
+b = [ "bookmark" ]
+d = [ "diff" ]
+difft = [ "diff", "--tool", "difft" ]
+s = [ "show" ]
+e = [ "edit" ]
+l = [ "log" ]
+ll = [ "log", "-r", "..", "-n", "10" ]
+lll = [ "log", "-T", "builtin_log_detailed"]
+n = [ "new" ]
+rb = [ "rebase" ]
+g = [ "git" ]
+gf = [ "git", "fetch" ]
+gp = [ "git", "push" ]
+tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
+
+
+[template-aliases]
+'format_short_signature(signature)' = 'signature.email().local()'
+
+[revset-aliases]
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+'closest_pushable(to)' = 'heads(::to & ~description(exact:"") & (~empty() | merges()))'
+
