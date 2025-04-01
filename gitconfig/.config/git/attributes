@@ -24,3 +24,7 @@
 *.rs    diff=rust
 *.lisp  diff=lisp
 *.el    diff=lisp
+
+# *.ipynb filter=nbstripout
+# *.zpln filter=nbstripout
+# *.ipynb diff=ipynb

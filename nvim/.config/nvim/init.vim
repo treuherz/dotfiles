@@ -108,6 +108,7 @@ autocmd FileType gitcommit,latex,tex,md,markdown setlocal spell
 autocmd FileType gitcommit setlocal nofoldenable
 set foldmethod=syntax
 set foldcolumn=1
+set foldlevelstart=99
 let g:sh_fold_enabled=5
 " Save/load fold setup when files closed
 autocmd BufWinLeave ?* mkview!

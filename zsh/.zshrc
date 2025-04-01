@@ -7,35 +7,12 @@ fi
 
 bindkey -e
 
-#########
-# ZPLUG #
-#########
+############
+# ANTIDOTE #
+############
 
-export ZPLUG_HOME=/usr/local/opt/zplug
-
-source $ZPLUG_HOME/init.zsh
-
-zplug "~/.config/zsh/history", from:local
-zplug "~/.config/zsh/keybindings-osx", from:local, \
-    if:"[[ $OSTYPE == *darwin* ]]"
-zplug "~/.config/zsh/keybindings-linux", from:local, \
-    if:"[[ $OSTYPE == *linux* ]]"
-zplug "~/.config/zsh/keybindings", from:local
-zplug "~/.config/zsh/completion", from:local
-zplug "zsh-users/zsh-completions"
-zplug "srijanshetty/zsh-pip-completion"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-history-substring-search", on:"zsh-users/zsh-syntax-highlighting"
-# zplug "agnoster/agnoster-zsh-theme", as:theme
-zplug "romkatv/powerlevel10k", as:theme, depth:1
-
-if ! zplug check; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-zplug load
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+antidote load
 
 ########
 # PATH #
@@ -46,22 +23,18 @@ export PATH=$HOME/.local/bin:/usr/local/sbin:$PATH
 ###########
 # OPTIONS #
 ###########
-setopt autocd # if a directory is sent instead of a command, cd to it
 
+setopt autocd # if a directory is sent instead of a command, cd to it
+setopt interactivecomments # make # work for comments on the command line
 
 ###########
 # ALIASES #
 ###########
 
-# Wraps mc so that it exits to the directory I'm looking at.
-alias mc='. /usr/share/mc/bin/mc-wrapper.sh'
-
 alias dk=docker
 alias dkr="docker run"
 alias dkb="docker build"
-alias dkm=docker-machine
-alias dkc=docker-compose
-
+alias dkc="docker compose"
 
 alias kc=kubectl
 
@@ -91,32 +64,45 @@ if [[ -e $HOME/.cargo/env ]]; then
   source $HOME/.cargo/env
 fi
 
-# Load pyenv automatically by appending
-# the following to ~/.zshrc:
-
-if (( $+commands[pyenv] )); then
-  eval "$(pyenv init -)"
-fi
-
 if (( $+commands[go] )); then
   export PATH=$(go env GOPATH)/bin:$PATH
 fi
 
 export WORDCHARS=${WORDCHARS/\/}
 
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/nomad nomad
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+autoload -Uz compinit
+autoload -U +X bashcompinit
+
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+  bashcompinit
+done
+compinit -C
+bashcompinit -C
+
+##fzf
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# _fzf_compgen_path() {
+#   fd --hidden --follow --exclude ".git" . "$1"
+# }
+# _fzf_compgen_dir() {
+#   fd --type d --hidden --follow --exclude ".git" . "$1"
+# }
+
+## To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# pnpm
+export PNPM_HOME="/Users/et/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
 source $HOME/.zlocal
-
-
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
-
-complete -o nospace -C /usr/local/bin/terraform terraform
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

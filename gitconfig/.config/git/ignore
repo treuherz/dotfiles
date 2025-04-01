@@ -1,0 +1,15 @@
+tags
+/.vscode
+.idea/
+*.iml
+.DS_store
+.DS_Store
+prod-variables.env
+id_rsa
+.pre-commit-config.yml
+.pre-commit-config.yaml
+/scratch
+.netrc
+.mise.local.toml
+mise.local.toml
+prod-variables.sh

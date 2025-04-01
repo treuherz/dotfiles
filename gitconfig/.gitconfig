@@ -1,58 +1,119 @@
 [user]
-	email = eli.treuherz@cgi.com
+	email = et@arenko.group
 	name = Eli Treuherz
 [push]
 	default = simple
+	autoSetupRemote = true
 [core]
 	editor = nvim
-	excludesfile = /home/eli/.gitignore_global
 	autocrlf = input
 	pager = delta
+	excludesFile = "~/.config/git/ignore"
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[pager]
+	difftool = true
 [interactive]
 	diffFilter = delta --color-only
 [delta]
 	features = line-numbers
 	whitespace-error-style = 22 reverse
+	syntax-theme = Selenized
 [mergetool "fugitive"]
 	cmd = nvim -c \"Gvdiff\" \"$MERGED\"
 [merge]
 	tool = fugitive
+	conflictstyle = zdiff3
 [difftool "nvimdiff"]
 	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
 [diff]
-	tool = nvimdiff
+	mnemonicPrefix = true
+	colorMoved = plain
+	renames = true
+	tool = difftastic
 	algorithm = histogram
 [alias]
+	# commit
+	c  = commit
 	amend = commit --amend --no-edit
-	ss = status -sb
-	st = status
+
+	ch = checkout
+	staged = diff --cached
+	f  = fetch
+	 
+	# log
 	ll = !git --no-pager log --oneline --decorate --graph -n 10
-	la = !git ll --all
+	la = !git --no-pager log --oneline --decorate --graph -n 10 --all
 	lll = log --all --oneline --decorate --graph 
-	mr = !sh -c 'git fetch origin merge-requests/$1/head:mr/$1 && git checkout mr/$1' -
-	nuke = reset --hard
+
+	# pull
 	purr = pull --rebase
 	puff = pull --ff-only
+
+	force = push --force-with-lease --force-if-includes
+
+	rb = rebase
+
+	# reset
+	r  = reset
 	unstage = reset HEAD --
-	staged = diff --cached
+	nuke = reset --hard
+
+	# status
+	st = status
+	ss = status -sb
+
+	# switch
+	sw = switch
+	sd = switch develop
+	sc = switch -c
+
+	# other
+	mr = !sh -c 'git fetch origin merge-requests/$1/head:mr/$1 && git checkout mr/$1' -
 	root = rev-parse --show-toplevel
+	count-lines = "! git log --author=\"$1\" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf \"added lines: %s, removed lines: %s, total lines: %s\\n\", add, subs, loc }' #"
 [gitreview]
 	remote = origin
 	username = treuherze
 [rebase]
 	autosquash = true
+[rerere]
+	enabled = true
+	autoUpdate = true
+[push]
+	followTags=true
 [diff-so-fancy]
 	stripLeadingSymbols = false
-[url "ssh://git@bitbucket.org/"]
-	insteadOf = https://bitbucket.org/
-[url "ssh://git@gitlab.com/"]
-	insteadOf = https://gitlab.com/
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
 [init]
 	defaultBranch = develop
+[tag]
+	sort = version:refname
+[branch]
+	sort = -committerdate
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[credential]
+	helper = /usr/local/bin/git-credential-manager
+[http]
+	cookiefile = /Users/et/.cache/git/cookies
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[advice]
+	detachedHead = false
+[help]
+	autocorrect = prompt
+[filter "nbstripout"]
+	clean = \"/Users/et/.local/share/uv/tools/nbstripout/bin/python\" -m nbstripout
+	smudge = cat
+	required = true
+[diff "ipynb"]
+	textconv = \"/Users/et/.local/share/uv/tools/nbstripout/bin/python\" -m nbstripout -t

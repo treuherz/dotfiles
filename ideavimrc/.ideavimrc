@@ -25,5 +25,5 @@ map gqq :action com.andrewbrookins.idea.wrap.WrapAction<CR>
 map gqap :action com.andrewbrookins.idea.wrap.WrapParagraphAction<CR>
 nnoremap <C-o> :action Back<CR>
 
-command! cn action GotoNextError
-command! cp action GotoPreviousError
+command cn :action GotoNextError
+command cp :action GotoPreviousError
