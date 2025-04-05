@@ -104,7 +104,7 @@
 [credential]
 	helper = /usr/local/bin/git-credential-manager
 [http]
-	cookiefile = /Users/et/.cache/git/cookies
+	cookiefile = /Users/eli/.gitcookies
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [advice]

@@ -13,3 +13,4 @@ id_rsa
 .mise.local.toml
 mise.local.toml
 prod-variables.sh
+/.zed
