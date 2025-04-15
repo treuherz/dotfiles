@@ -23,7 +23,7 @@ conflict-marker-style = "git"
 
 [git]
 auto-local-bookmark = true
-push-boomark-prefix = "et/push-"
+push-bookmark-prefix = "et/push-"
 
 [aliases]
 b = [ "bookmark" ]
