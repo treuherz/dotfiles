@@ -75,6 +75,11 @@
       "delay_ms": 500
     }
   },
+  "terminal": {
+    "env": {
+      "GIT_EDITOR": "zed --wait"
+    }
+  },
   "file_types": {
     "Tera (CSS)": [
       "*.css.tera",
@@ -95,6 +100,7 @@
     ]
   },
   "auto_install_extensions": {
+    "git-firefly": true,
     "zedokai": true
   },
   "languages": {
