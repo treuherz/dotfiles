@@ -94,6 +94,9 @@
       "*.yaml.tera"
     ]
   },
+  "auto_install_extensions": {
+    "zedokai": true
+  },
   "languages": {
     "Go": {
       "inlay_hints": {
