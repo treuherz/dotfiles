@@ -1,0 +1,19 @@
+font-family = Input Mono Narrow
+font-size = 15
+adjust-cell-height = 15%
+adjust-underline-position = 15%
+theme = Selenized
+minimum-contrast = 1.1
+
+focus-follows-mouse = true
+unfocused-split-opacity = 0.9
+
+window-padding-x = 6
+
+macos-titlebar-style = tabs
+macos-icon = custom-style
+macos-icon-ghost-color = #00FF00
+macos-icon-screen-color = #000000
+macos-icon-frame = aluminum
+
+copy-on-select = clipboard
