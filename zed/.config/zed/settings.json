@@ -7,31 +7,60 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "theme": "Zedokai Light",
+  "agent": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
+    },
+    "enabled": true,
+    "button": true
+  },
   "features": {
-    "copilot": true,
     "edit_prediction_provider": "zed"
   },
-
-  "ui_font_size": 17,
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "ui_font_size": 16,
   "ui_font_family": "SF Pro Text",
-  "editor_font_family": "Input Mono",
+  "buffer_font_family": "Input Mono",
   "buffer_font_size": 15,
-
+  "buffer_font_features": {
+    "calt": false
+  },
+  "load_direnv": "shell_hook",
+  "wrap_guides": [
+    80,
+    120
+  ],
   "soft_wrap": "none",
   "cursor_blink": false,
-  "relative_line_numbers": true,
-
   "ensure_final_newline_on_save": true,
   "remove_trailing_whitespace_on_save": true,
-
+  "show_whitespaces": "trailing",
   "vim_mode": true,
   "vim": {
-    "use_system_clipboard": "never"
+    "use_system_clipboard": "never",
+    "use_smartcase_find": true
   },
-
+  "relative_line_numbers": true,
+  "preview_tabs": {
+    "enable_preview_from_code_navigation": true
+  },
   "autosave": {
     "after_delay": {
-      "milliseconds": 1000
+      "milliseconds": 500
+    }
+  },
+  "formatter": "language_server",
+  "format_on_save": "on",
+  "auto_signature_help": true,
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+      "min_column": 80,
+      "update_debounce_ms": 500
     }
   },
   "project_panel": {
@@ -39,44 +68,104 @@
     "auto_fold_dirs": true,
     "folder_icons": true
   },
+  "bottom_dock_layout": "full",
   "git": {
     "inline_blame": {
       "enabled": true,
       "delay_ms": 500
     }
   },
+  "file_types": {
+    "Tera (CSS)": [
+      "*.css.tera",
+      "*.tera.css"
+    ],
+    "Tera (HTML)": [
+      "*.html.tera",
+      "*.tera.html"
+    ],
+    "Tera (JSON)": [
+      "*.json.tera"
+    ],
+    "Tera (TOML)": [
+      "*.toml.tera"
+    ],
+    "Tera (YAML)": [
+      "*.yaml.tera"
+    ]
+  },
   "languages": {
+    "Go": {
+      "inlay_hints": {
+        "enabled": true
+      }
+    },
+    "Gleam": {
+      "show_edit_predictions": false
+    },
     "HTML": {
       "tab_size": 2,
       "hard_tabs": false
     },
     "Python": {
-      "format_on_save": { "language_server": { "name": "ruff" } },
-      "formatter": { "language_server": { "name": "ruff" } },
-      "language_servers": ["pyright", "ruff"]
-    }
-  },
-  "assistant": {
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-3-5-sonnet"
+      "format_on_save": "on",
+      "formatter": {
+        "language_server": {
+          "name": "ruff"
+        }
+      },
+      "language_servers": [
+        "pyright",
+        "ruff"
+      ]
     },
-    "version": "2",
-    "enabled": true,
-    "button": true
+    "Typst": {
+      "soft_wrap": "editor_width",
+      "tab_size": 2,
+      "formatter": {
+        "external": {
+          "command": "typstyle"
+        }
+      }
+    },
+    "JavaScript": {
+      "tab_size": 2
+    }
   },
   "lsp": {
-    "pyright": {
-      // "binary": {
-      //   "path": ".venv/bin/pyright-langserver",
-      //   "arguments": ["--stdio"]
-      // }
-    }
-  },
-  "experimental.theme_overrides": {
-    "syntax": {
-      "embedded": {
-        "font_style": "italic"
+    "gopls": {
+      "initialization_options": {
+        "gofumpt": true,
+        "usePlaceholders": true,
+        "semanticTokens": true,
+        "experimentalPostfixCompletions": true,
+        "staticcheck": true,
+        "hints": {
+          "compositeLiteralFields": true
+        }
+      }
+    },
+    "rust-analyzer": {
+      "initialization_options": {
+        "check": {
+          "allTargets": false
+        }
+      }
+    },
+    "tinymist": {
+      "initialization_options": {
+        "preview": {
+          "background": {
+            "enabled": true
+          }
+        },
+        "lint": {
+          "enabled": true
+        }
+      },
+      "settings": {
+        "exportPdf": "onSave",
+        "outputPath": "$root/$name"
       }
     }
   }

@@ -16,12 +16,19 @@
     "context": "Editor",
     "bindings": {
       // "j k": ["workspace::SendKeystrokes", "escape"]
+      "shift-escape": null
     }
   },
   {
     "context": "VimControl && !menu",
     "bindings": {
       "space =": "editor::Format"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "space w": "workspace::Save"
     }
   }
 ]
