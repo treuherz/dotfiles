@@ -1,5 +1,5 @@
 [user]
-	email = et@arenko.group
+	email = eli@treuherz.co.uk
 	name = Eli Treuherz
 [push]
 	default = simple
@@ -46,11 +46,11 @@
 	ch = checkout
 	staged = diff --cached
 	f  = fetch
-	 
+
 	# log
 	ll = !git --no-pager log --oneline --decorate --graph -n 10
 	la = !git --no-pager log --oneline --decorate --graph -n 10 --all
-	lll = log --all --oneline --decorate --graph 
+	lll = log --all --oneline --decorate --graph
 
 	# pull
 	purr = pull --rebase
@@ -117,3 +117,6 @@
 	required = true
 [diff "ipynb"]
 	textconv = \"/Users/et/.local/share/uv/tools/nbstripout/bin/python\" -m nbstripout -t
+
+[include]
+    path = local.gitconfig
