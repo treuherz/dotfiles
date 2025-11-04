@@ -23,7 +23,6 @@ conflict-marker-style = "git"
 
 [git]
 auto-local-bookmark = true
-push-bookmark-prefix = "et/push-"
 
 [aliases]
 b = [ "bookmark" ]
@@ -41,6 +40,8 @@ gf = [ "git", "fetch" ]
 gp = [ "git", "push" ]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
 
+[templates]
+git_push_bookmark = '"et/push-" ++ change_id.short()'
 
 [template-aliases]
 'format_short_signature(signature)' = 'signature.email().local()'
