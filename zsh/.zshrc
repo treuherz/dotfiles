@@ -23,6 +23,8 @@ export PATH=$HOME/.local/bin:/usr/local/sbin:$PATH
 # OPTIONS #
 ###########
 
+export INTERACTIVE_COMMENTS=1
+
 setopt autocd # if a directory is sent instead of a command, cd to it
 setopt interactivecomments # make # work for comments on the command line
 
