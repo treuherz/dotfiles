@@ -69,8 +69,7 @@ fi
 
 export WORDCHARS=${WORDCHARS/\/}
 
-if type brew &>/dev/null
-then
+if (( $+commands[brew] )); then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
 
@@ -83,6 +82,11 @@ for dump in ~/.zcompdump(N.mh+24); do
 done
 compinit -C
 bashcompinit -C
+
+# must be after compinit
+if (( $+commands[zoxide] )); then
+  eval "$(zoxide init zsh)"
+fi
 
 ##fzf
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -103,7 +107,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
 
 # tabtab source for packages
 # uninstall by removing these lines
