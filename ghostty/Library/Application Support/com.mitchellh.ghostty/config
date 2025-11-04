@@ -2,7 +2,7 @@ font-family = Input Mono Narrow
 font-size = 15
 adjust-cell-height = 15%
 adjust-underline-position = 15%
-theme = Selenized
+theme = Monokai Pro
 minimum-contrast = 1.1
 
 focus-follows-mouse = true
