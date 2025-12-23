@@ -1,9 +1,9 @@
+zsh-users/zsh-completions
+zsh-users/zsh-syntax-highlighting
+romkatv/powerlevel10k 
+zsh-users/zsh-history-substring-search
+
 ~/.config/zsh/history
 ~/.config/zsh/keybindings-osx
 ~/.config/zsh/keybindings
 ~/.config/zsh/completion
-zsh-users/zsh-completions
-zsh-users/zsh-syntax-highlighting
-romkatv/powerlevel10k 
-
-zsh-users/zsh-history-substring-search

@@ -10,12 +10,25 @@ bindkey -e
 # ANTIDOTE #
 ############
 
-source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+if [[ -r /opt/homebrew/opt/antidote/share/antidote/antidote.zsh ]]; then
+  source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+elif [[ -r /home/linuxbrew/.linuxbrew/opt/antidote/share/antidote/antidote.zsh ]]; then
+  source /home/linuxbrew/.linuxbrew/opt/antidote/share/antidote/antidote.zsh
+elif [[ -r ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh ]]; then
+  source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
+fi
+
 antidote load
 
 ########
 # PATH #
 ########
+
+if (( $+commands[brew] )); then
+  eval "$(brew shellenv)"
+elif  [[ -e /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
 export PATH=$HOME/.local/bin:/usr/local/sbin:$PATH
 
@@ -70,10 +83,6 @@ if (( $+commands[go] )); then
 fi
 
 export WORDCHARS=${WORDCHARS/\/}
-
-if (( $+commands[brew] )); then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-fi
 
 autoload -Uz compinit
 autoload -U +X bashcompinit
