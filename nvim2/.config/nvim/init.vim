@@ -25,7 +25,6 @@ nnoremap <Leader>w :w<CR>
 set undofile
 set undodir=~/.nvundo/
 
-set termguicolors
 set background=dark
 colorscheme monokai-pro
 let g:lightline = {
@@ -42,6 +41,6 @@ set smartcase
 set wrap
 set linebreak
 
-" 'Hyrbrid' mode
+" 'Hybrid' mode
 set relativenumber
 set number
