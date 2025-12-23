@@ -12,6 +12,7 @@
 [column]
 	ui = auto
 [branch]
+	autoSetupMerge = simple
 	sort = -committerdate
 [pager]
 	difftool = true
@@ -20,14 +21,14 @@
 [delta]
 	features = line-numbers
 	whitespace-error-style = 22 reverse
-	syntax-theme = Selenized
+	; syntax-theme = Selenized
 [mergetool "fugitive"]
 	cmd = nvim -c \"Gvdiff\" \"$MERGED\"
 [merge]
 	tool = fugitive
 	conflictstyle = zdiff3
 [difftool "nvimdiff"]
-	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+	cmd = nvim --clean -d \"$LOCAL\" \"$REMOTE\"
 [difftool]
 	prompt = false
 [difftool "difftastic"]
@@ -59,6 +60,10 @@
 	force = push --force-with-lease --force-if-includes
 
 	rb = rebase
+	rbm = rebase origin/main
+	rbc = rebase --continue
+
+	frm = "! git fetch origin && git rebase origin/main"
 
 	# reset
 	r  = reset
@@ -72,7 +77,10 @@
 	# switch
 	sw = switch
 	sd = switch develop
+	sm = switch main
 	sc = switch -c
+
+	new = "!f() { git switch -c \"etreuherz/${1#etreuherz/}\" origin/main; }; f"
 
 	# other
 	mr = !sh -c 'git fetch origin merge-requests/$1/head:mr/$1 && git checkout mr/$1' -
@@ -94,8 +102,6 @@
 	defaultBranch = develop
 [tag]
 	sort = version:refname
-[branch]
-	sort = -committerdate
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
@@ -119,4 +125,4 @@
 	textconv = \"/Users/et/.local/share/uv/tools/nbstripout/bin/python\" -m nbstripout -t
 
 [include]
-    path = local.gitconfig
+    path = .local.gitconfig
