@@ -127,7 +127,9 @@ esac
 
 complete -o nospace -C /usr/local/bin/terraform terraform
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if (( $+commands[kubectl-krew] )); then
+  export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+fi
 
 eval "$(mise activate zsh)"
 
