@@ -21,9 +21,6 @@ merge-args = ["merge", "$base", "$left", "$right", "-o", "$output", "--fast"]
 merge-conflict-exit-codes = [1]
 conflict-marker-style = "git"
 
-[git]
-auto-local-bookmark = true
-
 [aliases]
 b = [ "bookmark" ]
 d = [ "diff" ]
@@ -50,3 +47,5 @@ git_push_bookmark = '"et/push-" ++ change_id.short()'
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
 'closest_pushable(to)' = 'heads(::to & ~description(exact:"") & (~empty() | merges()))'
 
+[remotes.origin]
+auto-track-bookmarks = "glob:*"
