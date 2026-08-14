@@ -1,181 +1,456 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
 // documentation: https://zed.dev/docs/configuring-zed
 //
 // To see all of Zed's default settings without changing your
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "theme": "Zedokai Light",
+  "agent_servers": {
+    "codex-acp": {
+      "type": "registry",
+    },
+    "claude-acp": {
+      "type": "registry",
+    },
+    "opencode": {
+      "favorite_models": ["evroc/moonshotai/Kimi-K2.5"],
+      "type": "registry",
+    },
+  },
+  "document_folding_ranges": "on",
+  "buffer_line_height": "comfortable",
+  "sticky_scroll": {
+    "enabled": true,
+  },
+  "always_treat_brackets_as_autoclosed": true,
+  "language_models": {
+    "openai_compatible": {
+      "Evroc": {
+        "api_url": "https://models.think.cloud.evroc.com/v1",
+        "available_models": [
+          {
+            "name": "openai/gpt-oss-120b",
+            "max_tokens": 2000000,
+            "max_output_tokens": 2000000,
+            "max_completion_tokens": 2000000,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+            },
+          },
+          {
+            "name": "moonshotai/Kimi-K2.5",
+            "max_tokens": 200000,
+            "max_output_tokens": 200000,
+            "max_completion_tokens": 200000,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+            },
+          },
+        ],
+      },
+    },
+    "ollama": {
+      "api_url": "http://localhost:11432",
+    },
+  },
+  "icon_theme": {
+    "mode": "light",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "git_hosting_providers": [
+    {
+      "provider": "gitlab",
+      "name": "evroc GitLab",
+      "base_url": "https://gitlab.evroc.dev",
+    },
+  ],
+  "inlay_hints": {
+    "enabled": false,
+    "show_background": true,
+    "show_other_hints": true,
+    "show_parameter_hints": true,
+    "show_type_hints": true,
+  },
+  "use_smartcase_search": true,
+  "ssh_connections": [
+    {
+      "host": "workstation",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/etreuherz/.kube/config"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/cloud-config"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/ext/go"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/ext/gotools"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/ext/gotools/gopls"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/ext/jj"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/ext/kube-ovn"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/ext/kubevirt"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/ext/ovn"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/ext/ovs"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/ext/zed"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/metal-config"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/monorepo"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/monorepo-bazel"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/monorepo-main"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/monorepo/third-party/kube-ovn-ipsec/kube-ovn/./"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/oncall"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/public-api-go-client-sdk"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/code/test-zed-image-preview"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/scratch"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/scratch/ip-stress"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/scratch/ovn-go-mod-repro"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/scratch/vm-stress"
+          ]
+        },
+        {
+          "paths": [
+            "/home/etreuherz/scratch/yaml-format-test"
+          ]
+        }
+      ]
+    }
+  ],
+  "theme": {
+    "mode": "light",
+    "light": "Zedokai Light",
+    "dark": "Zedokai Darker",
+  },
   "agent": {
+    "tool_permissions": {
+      "default": "confirm",
+      "tools": {
+        "terminal": {
+          "always_allow": [
+            {
+              "pattern": "^shellcheck\\b",
+            },
+          ],
+        },
+        "fetch": {
+          "default": "allow",
+        },
+        "web_search": {
+          "default": "allow",
+        },
+      },
+    },
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4"
+      "provider": "Evroc",
+      "model": "moonshotai/Kimi-K2.5",
     },
     "enabled": true,
-    "button": true
-  },
-  "features": {
-    "edit_prediction_provider": "zed"
+    "button": true,
   },
   "edit_predictions": {
-    "mode": "subtle"
+    "provider": "zed",
+    "mode": "subtle",
   },
+  "agent_buffer_font_size": 12,
+  "agent_ui_font_size": 16,
   "ui_font_size": 16,
-  "ui_font_family": "SF Pro Text",
+  "ui_font_family": ".SystemUIFont",
   "buffer_font_family": "Input Mono",
-  "buffer_font_size": 15,
+  "buffer_font_size": 14.0,
   "buffer_font_features": {
-    "calt": false
+    "calt": false,
   },
   "load_direnv": "shell_hook",
-  "wrap_guides": [
-    80,
-    120
-  ],
+  "wrap_guides": [80, 120],
   "soft_wrap": "none",
   "cursor_blink": false,
   "ensure_final_newline_on_save": true,
   "remove_trailing_whitespace_on_save": true,
-  "show_whitespaces": "trailing",
+  "show_whitespaces": "selection",
   "vim_mode": true,
   "vim": {
+    "highlight_on_yank_duration": 200,
     "use_system_clipboard": "never",
-    "use_smartcase_find": true
+    "use_smartcase_find": true,
   },
-  "relative_line_numbers": true,
-  "preview_tabs": {
-    "enable_preview_from_code_navigation": true
-  },
-  "autosave": {
-    "after_delay": {
-      "milliseconds": 500
-    }
-  },
-  "formatter": "language_server",
+  "relative_line_numbers": "enabled",
+  "autosave": "on_focus_change",
+  "formatter": "auto",
   "format_on_save": "on",
-  "auto_signature_help": true,
   "diagnostics": {
     "inline": {
       "enabled": true,
       "min_column": 80,
-      "update_debounce_ms": 500
-    }
+      "update_debounce_ms": 500,
+    },
   },
   "project_panel": {
+    "starts_open": true,
+    "hide_hidden": false,
     "indent_size": 15,
     "auto_fold_dirs": true,
-    "folder_icons": true
+    "folder_icons": true,
   },
   "bottom_dock_layout": "full",
   "git": {
     "inline_blame": {
       "enabled": true,
-      "delay_ms": 500
-    }
+      "delay_ms": 500,
+    },
   },
   "terminal": {
     "env": {
-      "GIT_EDITOR": "zed --wait"
-    }
+      "GIT_EDITOR": "zed --wait",
+    },
   },
   "file_types": {
-    "Tera (CSS)": [
-      "*.css.tera",
-      "*.tera.css"
+    "Dockerfile": ["Dockerfile.*"],
+    "Helm": [
+      "**/templates/**/*.tpl",
+      "**/templates/**/*.yaml",
+      "**/templates/**/*.yml",
+      "**/helmfile.d/**/*.yaml",
+      "**/helmfile.d/**/*.yml",
+      "**/values*.yaml",
     ],
-    "Tera (HTML)": [
-      "*.html.tera",
-      "*.tera.html"
-    ],
-    "Tera (JSON)": [
-      "*.json.tera"
-    ],
-    "Tera (TOML)": [
-      "*.toml.tera"
-    ],
-    "Tera (YAML)": [
-      "*.yaml.tera"
-    ]
+    "Tera (CSS)": ["*.css.tera", "*.tera.css"],
+    "Tera (HTML)": ["*.html.tera", "*.tera.html"],
+    "Tera (JSON)": ["*.json.tera"],
+    "Tera (TOML)": ["*.toml.tera"],
+    "Tera (YAML)": ["*.yaml.tera"],
   },
   "auto_install_extensions": {
     "git-firefly": true,
-    "zedokai": true
+    "zedokai": true,
+    "basher": true,
   },
   "languages": {
+    "Dockerfile": {
+      "formatter": null,
+      "format_on_save": "off",
+      "hard_tabs": true,
+    },
     "Go": {
-      "inlay_hints": {
-        "enabled": true
-      }
+      "formatter": "language_server",
+      "language_servers": ["gopls", "golangci-lint"],
     },
     "Gleam": {
-      "show_edit_predictions": false
+      "show_edit_predictions": false,
     },
     "HTML": {
       "tab_size": 2,
-      "hard_tabs": false
+      "hard_tabs": false,
+    },
+    "Markdown": {
+      "soft_wrap": "bounded",
     },
     "Python": {
       "format_on_save": "on",
-      "formatter": {
-        "language_server": {
-          "name": "ruff"
-        }
-      },
-      "language_servers": [
-        "pyright",
-        "ruff"
-      ]
     },
     "Typst": {
       "soft_wrap": "editor_width",
       "tab_size": 2,
       "formatter": {
         "external": {
-          "command": "typstyle"
-        }
-      }
+          "command": "typstyle",
+        },
+      },
+    },
+    "TypeScript": {
+      "tab_size": 2,
     },
     "JavaScript": {
-      "tab_size": 2
-    }
+      "tab_size": 2,
+    },
+    "JSON": {
+      "tab_size": 2,
+    },
+    "YAML": {
+      "tab_size": 2,
+    },
+    "Shell Script": {
+      "formatter": {
+        "external": {
+          "command": "shfmt",
+          "arguments": [
+            "--filename",
+            "{buffer_path}",
+            "--binary-next-line",
+            "--case-indent",
+            "--space-redirects",
+            "--indent",
+            "2",
+          ],
+        },
+      },
+    },
   },
   "lsp": {
+    "golangci-lint": {
+      "initialization_options": {
+        "command": [
+          "golangci-lint",
+          "run",
+          "--output.json.path",
+          "stdout",
+          "--issues-exit-code=1",
+          "--show-stats=false",
+          "--output.text.path=",
+        ],
+      },
+    },
     "gopls": {
       "initialization_options": {
+        "buildFlags": ["-tags=malcolmtest"],
         "gofumpt": true,
         "usePlaceholders": true,
         "semanticTokens": true,
         "experimentalPostfixCompletions": true,
-        "staticcheck": true,
         "hints": {
-          "compositeLiteralFields": true
-        }
-      }
+          "compositeLiteralFields": true,
+        },
+        "staticcheck": false,
+        "directoryFilters": [
+          "-vendor",
+          "-experimental/vendor",
+          // "-toolchain"
+        ],
+      },
     },
     "rust-analyzer": {
       "initialization_options": {
         "check": {
-          "allTargets": false
-        }
-      }
+          "allTargets": false,
+        },
+        "checkOnSave": false,
+      },
     },
     "tinymist": {
       "initialization_options": {
         "preview": {
           "background": {
-            "enabled": true
-          }
+            "enabled": true,
+          },
         },
         "lint": {
-          "enabled": true
-        }
+          "enabled": true,
+        },
       },
       "settings": {
         "exportPdf": "onSave",
-        "outputPath": "$root/$name"
-      }
-    }
-  }
+        "outputPath": "$root/$name",
+      },
+    },
+  },
+  "theme_overrides": {
+    "Zedokai Light": {
+      "vim.normal.background": "#a9dc76",
+      "vim.insert.background": "#ffd866",
+      "vim.visual.background": "#ab9df2",
+      "vim.visual_line.background": "#ab9df2",
+      "vim.visual_block.background": "#ab9df2",
+      "vim.replace.background": "#ff6188",
+    },
+  },
 }
