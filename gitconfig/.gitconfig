@@ -6,7 +6,6 @@
 	autoSetupRemote = true
 [core]
 	editor = nvim
-	autocrlf = input
 	pager = delta
 	excludesFile = "~/.config/git/ignore"
 [column]
@@ -60,8 +59,9 @@
 	force = push --force-with-lease --force-if-includes
 
 	rb = rebase
-	rbm = rebase origin/main
+	rbm = rebase origin/main --autosquash
 	rbc = rebase --continue
+	rba = rebase --abort
 
 	frm = "! git fetch origin && git rebase origin/main"
 
@@ -86,11 +86,13 @@
 	mr = !sh -c 'git fetch origin merge-requests/$1/head:mr/$1 && git checkout mr/$1' -
 	root = rev-parse --show-toplevel
 	count-lines = "! git log --author=\"$1\" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf \"added lines: %s, removed lines: %s, total lines: %s\\n\", add, subs, loc }' #"
+	git = !exec git
 [gitreview]
 	remote = origin
 	username = treuherze
 [rebase]
 	autosquash = true
+	updateRefs = true
 [rerere]
 	enabled = true
 	autoUpdate = true
@@ -107,8 +109,8 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
-[credential]
-	helper = /usr/local/bin/git-credential-manager
+; [credential]
+; 	helper = !git-credential-manager
 [http]
 	cookiefile = /Users/eli/.gitcookies
 [credential "https://dev.azure.com"]
@@ -126,3 +128,9 @@
 
 [include]
     path = .local.gitconfig
+[credential "https://github.com"]
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !gh auth git-credential
+[safe]
+	directory = 
