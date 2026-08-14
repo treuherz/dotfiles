@@ -1,4 +1,5 @@
-zsh-users/zsh-completions
+# jeffreytse/zsh-vi-mode
+#zsh-users/zsh-completions
 zsh-users/zsh-syntax-highlighting
 romkatv/powerlevel10k 
 zsh-users/zsh-history-substring-search
@@ -6,4 +7,6 @@ zsh-users/zsh-history-substring-search
 ~/.config/zsh/history
 ~/.config/zsh/keybindings-osx
 ~/.config/zsh/keybindings
+~/.config/zsh/completion-config
 ~/.config/zsh/completion
+Aloxaf/fzf-tab

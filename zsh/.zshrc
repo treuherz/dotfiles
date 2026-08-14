@@ -47,10 +47,8 @@ setopt interactivecomments # make # work for comments on the command line
 
 alias dk=docker
 alias dkr="docker run"
-alias dkb="docker build"
+alias dkb="docker buildx build"
 alias dkc="docker compose"
-
-alias kc=kubectl
 
 alias cg='cd $(git rev-parse --show-toplevel)'
 
@@ -63,8 +61,6 @@ cdr() {
     unset rangerdir
   fi
 }
-
-alias rr=ranger
 
 if type thefuck > /dev/null; then
   eval $(thefuck --alias damn)
@@ -87,19 +83,15 @@ export WORDCHARS=${WORDCHARS/\/}
 autoload -Uz compinit
 autoload -U +X bashcompinit
 
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-  bashcompinit
-done
-compinit -C
-bashcompinit -C
+compinit -u
+bashcompinit -u
 
 # must be after compinit
 if (( $+commands[zoxide] )); then
   eval "$(zoxide init zsh)"
 fi
 
-##fzf
+#fzf
 if (( $+commands[fzf] )); then
   source <(fzf --zsh)
   _fzf_compgen_path() {
@@ -110,7 +102,7 @@ if (( $+commands[fzf] )); then
   }
 fi
 
-## To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # pnpm
@@ -121,11 +113,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# tabtab source for packages
-# uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
-
-complete -o nospace -C /usr/local/bin/terraform terraform
 
 if (( $+commands[kubectl-krew] )); then
   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
