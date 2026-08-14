@@ -1,0 +1,73 @@
+version: 2
+defaults:
+  full: codex/gpt-5.6-luna(xhigh)
+  mini: codex/gpt-5.6-luna(low)
+providers:
+  evroc:
+    kind:
+      type: custom_open_ai_compatible
+    url: https://models.think.cloud.evroc.com/v1
+    auth:
+      type: static_key
+      key: ${EVROC_THINK_TOKEN}
+      format: bearer_token
+    protocol: openai_chat_completions
+  codex:
+    kind:
+      type: catalog
+      name: codex
+    auth:
+      type: codex_device
+      profile: codex
+models:
+  evroc/zai-org/GLM-5.2:
+    provider_name: zai-org/GLM-5.2
+    variant: other
+    class: full
+    max_output_tokens_per_turn: 32768
+    provider: evroc
+    reasoning:
+      type: no_reasoning
+    context_window: 200000
+    compaction_threshold: 0.8
+  evroc/google/gemma4:
+    provider_name: google/gemma-4-26B-A4B-it
+    variant: other
+    class: mini
+    max_output_tokens_per_turn: 32768
+    provider: evroc
+    reasoning:
+      type: no_reasoning
+    context_window: 200000
+    compaction_threshold: 0.8
+  codex/gpt-5.5:
+    enabled: false
+  codex/gpt-5.4:
+    enabled: false
+  codex/gpt-5.4-mini:
+    enabled: false
+  codex/gpt-5.6-terra:
+    enabled: false
+default_permission_matcher: autonomous
+autonomous_permission_matcher:
+  max_consecutive_denials: 3
+integrations:
+  search:
+    providers:
+      exa:
+        enabled: true
+        key: ${EXA_API_KEY}
+tui:
+  theme: auto
+  alt-screen: auto
+  density: compact
+  show-all-thinking-blocks: false
+  show-system-reminders: true
+  sidebar:
+    side: right
+    default-state: open
+    collapse-threshold: 130
+    width: 40
+  animations:
+    enabled: true
+    terminal-title: false

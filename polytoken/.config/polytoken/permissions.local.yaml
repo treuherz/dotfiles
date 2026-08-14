@@ -1,0 +1,79 @@
+version: 2
+allow:
+- tool: shell_exec
+  args:
+    command_tokens:
+    - sort
+    - '*'
+- tool: shell_exec
+  args:
+    command_tokens:
+    - uniq
+    - '*'
+- tool: shell_exec
+  args:
+    command_tokens:
+    - man
+    - '*'
+- tool: web_fetch
+- tool: web_search
+- tool: shell_exec
+  args:
+    command_tokens:
+    - env
+    - '*'
+- tool: shell_exec
+  args:
+    command_tokens:
+    - jj
+    - commit
+    - '*'
+- tool: shell_exec
+  args:
+    command_tokens:
+    - jj
+    - show
+    - '*'
+- tool: shell_exec
+  args:
+    command_tokens:
+    - jj
+    - describe
+    - '*'
+- tool: shell_exec
+  args:
+    command_tokens:
+    - gofmt
+    - '*'
+- tool: shell_exec
+  args:
+    command_tokens:
+    - go
+    - test
+    - '*'
+- tool: shell_exec
+  args:
+    command_tokens:
+    - git
+    - add
+    - '*'
+- tool: shell_exec
+  args:
+    command_tokens:
+    - git
+    - commit
+    - '*'
+filesystem:
+  allow:
+  - access:
+    - read
+    path: /home/etreuherz/.local/share/polytoken/sessions/*
+  - access:
+    - write
+    path: /tmp{,/**}
+  - access:
+    - read
+    path: /home/etreuherz/code/{**}
+  - access:
+    - read
+    path: /home/etreuherz/scratch{,/**}

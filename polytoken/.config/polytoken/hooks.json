@@ -1,0 +1,31 @@
+[
+  {
+    "name": "herdr-state-session-start",
+    "event": "session_start",
+    "handler": {
+      "bash": "$HOME/.config/polytoken/hooks/herdr-state.sh idle init"
+    }
+  },
+  {
+    "name": "herdr-state-model-turn",
+    "event": "pre_model_turn",
+    "handler": {
+      "bash": "$HOME/.config/polytoken/hooks/herdr-state.sh working"
+    }
+  },
+  {
+    "name": "herdr-state-stop",
+    "event": "stop",
+    "handler": {
+      "bash": "$HOME/.config/polytoken/hooks/herdr-state.sh idle"
+    }
+  },
+  {
+    "name": "herdr-state-ask-user",
+    "event": "pre_tool_use",
+    "matcher": "ask_user_question",
+    "handler": {
+      "bash": "$HOME/.config/polytoken/hooks/herdr-state.sh blocked"
+    }
+  }
+]
