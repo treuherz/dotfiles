@@ -1,1 +1,2 @@
 .config/jj/conf.d/local.toml
+.config/jj/repos/**/*

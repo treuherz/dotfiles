@@ -12,16 +12,21 @@ pager = ":builtin"
 [ui.streampager]
 interface = "quit-quickly-or-clear-output"
 
+[merge-tools.ec]
+merge-args = ["$base", "$left", "$right", "$output"]
+
 [merge-tools.difft]
 diff-args = ["--color=always", "$left", "$right"]
 
-[merge-tools.mergiraf]
-program = "mergiraf"
-merge-args = ["merge", "$base", "$left", "$right", "-o", "$output", "--fast"]
-merge-conflict-exit-codes = [1]
+[merge-tools.vimdiff]
+program = "nvim"
 conflict-marker-style = "git"
 
+[revsets]
+bookmark-advance-to = 'closest_pushable(@)'
+
 [aliases]
+jj = ["util", "exec", "--", "jj"]
 b = [ "bookmark" ]
 d = [ "diff" ]
 difft = [ "diff", "--tool", "difft" ]
@@ -35,7 +40,8 @@ rb = [ "rebase" ]
 g = [ "git" ]
 gf = [ "git", "fetch" ]
 gp = [ "git", "push" ]
-tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
+tug = ["bookmark", "advance"]
+ws = ["workspace"]
 
 [templates]
 git_push_bookmark = '"et/push-" ++ change_id.short()'
@@ -44,8 +50,7 @@ git_push_bookmark = '"et/push-" ++ change_id.short()'
 'format_short_signature(signature)' = 'signature.email().local()'
 
 [revset-aliases]
-'closest_bookmark(to)' = 'heads(::to & bookmarks())'
 'closest_pushable(to)' = 'heads(::to & ~description(exact:"") & (~empty() | merges()))'
 
 [remotes.origin]
-auto-track-bookmarks = "glob:*"
+auto-track-bookmarks = "*"
